@@ -9,8 +9,6 @@ This implementation guide is under the guidance of the joint working group of [H
 #### Source and Artefacts
 **Sourcecode**: You can find the source of this IG on [github](https://github.com/wg-hl7-openehr-ch/vaccination-domain-IG)
 
-**Download**: You can download this IG in [NPM format](https://confluence.hl7.org/display/FHIR/NPM+Package+Specification) from [here](package.tgz).
-
 
 ### IP Statements
 This document is licensed under Creative Commons "No Rights Reserved" ([CC0](https://creativecommons.org/publicdomain/zero/1.0/)).

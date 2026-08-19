@@ -10,7 +10,7 @@ title: CH Vaccination Domain Service
 description: This IG describes the Service with its architecture including the API and the persistance of data around the domain of vaccination data.
 status: draft # draft | active | retired | unknown
 version: 0.1.0
-fhirVersion: 4.0.1 # https://www.hl7.org/fhir/valueset-FHIR-version.html
+fhirVersion: 5.0.0 # https://www.hl7.org/fhir/valueset-FHIR-version.html
 copyrightYear: 2026+
 releaseLabel: ci-build
 # license: CC0-1.0 # https://www.hl7.org/fhir/valueset-spdx-license.html
@@ -24,12 +24,12 @@ publisher:
 # package id and the value is the version (or dev/current). For advanced
 # use cases, the value can be an object with keys for id, uri, and version.
 dependencies:
-  hl7.terminology.r4:
+  hl7.terminology.r5:
     uri: http://terminology.hl7.org/ImplementationGuide/hl7.terminology
     version: 7.1.0
-  ch.fhir.ig.ch-core: 7.0.0-ballot
-  ch.fhir.ig.ch-term: 3.4.x
-  ch.fhir.ig.ch-vacd: 7.0.0-ballot
+#  ch.fhir.ig.ch-core: 7.0.0-ballot
+#  ch.fhir.ig.ch-term: 3.4.x
+#  ch.fhir.ig.ch-vacd: 7.0.0-ballot
   openehr.base:
     id: openehr
     uri: http://openehr.org/fhir/ImplementationGuide/openehr.base
@@ -69,7 +69,6 @@ dependencies:
 #
 parameters:
   excludettl: true
-#   validation: [allow-any-extensions, no-broken-links]
   openehr: true
   path-resource:
     - '/input/archetypes'
