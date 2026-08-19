@@ -6,7 +6,7 @@
 
 
 	<li class="dropdown">
-		<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+		<a data-toggle="dropdown" href="use-cases.html" class="dropdown-toggle">
 			Use Cases
 			<b class="caret"></b>
 		</a>
