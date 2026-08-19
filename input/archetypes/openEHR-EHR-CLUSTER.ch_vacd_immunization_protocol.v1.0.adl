@@ -1,0 +1,97 @@
+archetype (adl_version=2.1.0; rm_release=1.0.3; generated; uid=4a9c3a94-4f44-49da-9165-68d0ca961a3b)
+	openEHR-EHR-CLUSTER.ch_vacd_immunization_protocol.v1.0.0
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	lifecycle_state = <"unmanaged">
+	original_author = <
+		["date"] = <"2026-05-13">
+		["name"] = <"Jean-Pierre Messerli">
+		["organisation"] = <"JPM Consulting GmbH">
+		["email"] = <"jean-pierre.messerli@jpm-consulting.ch">
+	>
+	original_namespace = <"org.openehr">
+	original_publisher = <"openEHR Foundation">
+	custodian_namespace = <"org.openehr">
+	custodian_organisation = <"openEHR Foundation">
+	licence = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record protocol-related CH VACD information for a vaccine administration, including target disease, vaccination series and planned series doses.">
+			use = <"Use within ACTION.medication when it represents one administered vaccine dose. This cluster records CH VACD protocol information derived from FHIR Immunization.protocolApplied, such as targetDisease, series and seriesDoses[x].">
+			keywords = <"immunization, vaccination, CH-VACD, protocol", ...>
+			misuse = <"Not to be used for vaccine product details, administered dose quantity, route, anatomical administration site, batch number, expiry date, manufacturer, source metadata, verification status or adverse reactions. Use appropriate ACTION, CLUSTER or feeder_audit structures for these data.">
+		>
+	>
+	references = <
+		["1"] = <"https://www.fhir.ch/ig/ch-vacd/StructureDefinition-ch-vacd-immunization.html">
+	>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"9e391f6e90dc0d88b1552fb4c6bd3ded">
+		["build_uid"] = <"836e0c9b-492a-384e-b0e5-1789d04d5df7">
+	>
+
+definition
+	CLUSTER[id1] occurrences matches {0..1} matches {	-- CH VACD immunization protocol
+		items matches {
+			ELEMENT[id4] matches {	-- Target disease
+				value matches {
+					DV_TEXT[id10] 
+				}
+			}
+			CLUSTER[id7] occurrences matches {0..1} matches {	-- Dose potency
+				items matches {
+					ELEMENT[id8] occurrences matches {0..1} matches {	-- Subpotent dose
+						value matches {
+							DV_BOOLEAN[id11] 
+						}
+					}
+					ELEMENT[id9] matches {	-- Reason for subpotency
+						value matches {
+							DV_TEXT[id12] 
+						}
+					}
+				}
+			}
+		}
+	}
+
+terminology
+	term_definitions = <
+		["en"] = <
+			["id1"] = <
+				text = <"CH VACD immunization protocol">
+				description = <"CH VACD-specific protocol details for an administered vaccination.">
+			>
+			["id4"] = <
+				text = <"Target disease">
+				description = <"The vaccine-preventable disease or condition targeted by the vaccination protocol, according to the CH VACD target disease value set.
+
+This data element should be constrained to DV_CODED_TEXT in a template and bound to the CH VACD target disease value set, where possible.
+
+FHIR mapping: Immunization.protocolApplied.targetDisease.">
+			>
+			["id7"] = <
+				text = <"Dose potency">
+				description = <"Details about whether the administered vaccine dose is considered to have reduced potency or effectiveness.">
+			>
+			["id8"] = <
+				text = <"Subpotent dose">
+				description = <"Indicates whether the administered vaccine dose is considered to be subpotent.
+
+FHIR mapping: Immunization.isSubpotent.">
+			>
+			["id9"] = <
+				text = <"Reason for subpotency">
+				description = <"The reason why the administered vaccine dose is considered to be subpotent.
+
+This data element should be coded with a terminology in a template, where possible.
+
+FHIR mapping: Immunization.subpotentReason.">
+			>
+		>
+	>
+

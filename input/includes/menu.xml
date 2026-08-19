@@ -1,0 +1,34 @@
+<ul xmlns="http://www.w3.org/1999/xhtml" class="nav navbar-nav">
+	<!--<li><a href="toc.html">Table of Contents</a></li> -->
+	<li>
+		<a href="index.html">Home</a>
+	</li>
+
+
+	<li class="dropdown">
+		<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+			Use Cases
+			<b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu">
+			<li>
+				<a href="use-case1.html">Use Case 1</a>
+			</li>
+			<li>
+				<a href="use-case2.html">Use Case 2</a>
+			</li>
+		</ul>
+	</li>
+	<li>
+		<a href="architecture.html">Architecture</a>
+	</li>
+	<li>
+		<a href="archetypes.html">Archetypes</a>
+	</li>
+	<li>
+		<a href="terminology.html">Terminology</a>
+	</li>
+	<li>
+		<a href="artifacts.html">Artifacts</a>
+	</li>
+</ul>

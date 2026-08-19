@@ -1,0 +1,53 @@
+@startuml
+title Vaccination Domain Service Architecture
+
+
+card "Producer APP" as PROD #LightCyan {
+    card "Frontend" as pfnt #LightYellow {
+        
+    }
+    card "Backend" as pbck #LightYellow {
+      card "FHIR Client" as fclt #OrangeRed
+    }
+    
+}
+
+card "Consumer APP" as CONS #LightGreen {
+    card "Frontend" as cfnt #LightYellow {
+        
+    }
+    card "Backend" as cbck #LightYellow {
+    card "FHIR Client" as fcltp #OrangeRed {
+    }
+    }
+}
+
+card "Vaccination Domain Service" as Server #LightBlue {
+    card "FHIR Facade" as fapi #OrangeRed
+
+    card "Business Logic" as blogic #LightYellow
+
+    database "Administrative DB" as vdb #LightGray
+
+    card "openFHIR Server" as ofhir #Orange
+    database "Mapping DB" as mdb #LightGray
+
+    card "openEHR Server" as ehr #Orange
+    database "openEhr DB" as ehrdb #LightGray
+}
+
+pfnt --> pbck
+cfnt --> cbck
+
+fclt <--> fapi
+fcltp <--> fapi
+
+fapi --> blogic
+blogic --> vdb
+ofhir --> mdb
+blogic --> ehr
+blogic --> ofhir
+ehr --> ehrdb
+
+
+@enduml
