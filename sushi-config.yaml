@@ -71,8 +71,10 @@ dependencies:
 parameters:
   excludettl: true
   openehr: true
+  no-validate: StructureMap/* 
   path-resource:
     - '/input/archetypes'
+    - '/input/maps'
 #
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │ The menu property will be used to generate the input/menu.xml file. The menu is represented    │
@@ -145,6 +147,12 @@ parameters:
 #     exampleBoolean: true
 #   Patient/bad-example: omit
 #
+
+#resources:
+#  StructureMap/ImmunizationToAction:
+#    name: ImmunizationToAction
+#    description: ImmunizationToAction
+
 #
 # Groups can control certain aspects of the IG generation.  The IG
 # documentation recommends that authors use the default groups that

@@ -1,0 +1,16 @@
+map "http://fhir.ch/ig/ch-vaccination-domain-service/StructureMap/ImmunizationToAction" = "ImmunizationToAction"
+
+// url = 'http://fhir.ch/ig/ch-vaccination-domain-service/StructureMap/ImmunizationToAction'
+// name = 'ImmunizationToAction'
+// status = 'active'
+// description = 'Example demonstrating required metadata for the ImmunizationToAction map'
+
+uses "http://hl7.org/fhir/StructureDefinition/Immunization" alias Immunization as source
+uses "http://openehr.org/fhir/StructureDefinition/ACTION" alias ACTION as target
+
+group ImmunizationToAction(source src : Immunization, target tgt : ACTION) {
+  src.language as v -> tgt.language as lang,
+      lang.code_string = v,
+      lang.terminology_id as termId,
+      termId.code_string = 'ISO_639-1';
+}

@@ -1,45 +1,53 @@
 @startuml
+skinparam shadowing true
+skinparam rectangle {
+  roundCorner 5
+}
+skinparam defaultFontSize 16
+
 title Vaccination Domain Service Architecture
 
-
-card "Producer APP" as PROD #LightCyan {
-    card "Frontend" as pfnt #LightYellow {
+together {
+  rectangle  "Producer APP" as PROD #LightCyan {
+     
+      rectangle "Frontend" as pfnt #LightYellow {  
+      }
+      rectangle "Backend" as pbck #LightYellow {
+        rectangle "FHIR Client" as fcltp #OrangeRed
+      }
+  }
+  rectangle "Consumer APP" as CONS #LightGreen {
+    rectangle "Frontend" as cfnt #LightYellow {
         
     }
-    card "Backend" as pbck #LightYellow {
-      card "FHIR Client" as fclt #OrangeRed
+    rectangle "Backend" as cbck #LightYellow {
+    rectangle "FHIR Client" as fcltc #OrangeRed {
     }
-    
-}
+    }
+  }
 
-card "Consumer APP" as CONS #LightGreen {
-    card "Frontend" as cfnt #LightYellow {
-        
-    }
-    card "Backend" as cbck #LightYellow {
-    card "FHIR Client" as fcltp #OrangeRed {
-    }
-    }
-}
+  rectangle "Vaccination Domain Service" as Server #LightBlue {
+    together {
+    rectangle "FHIR Facade" as fapi #OrangeRed
 
-card "Vaccination Domain Service" as Server #LightBlue {
-    card "FHIR Facade" as fapi #OrangeRed
-
-    card "Business Logic" as blogic #LightYellow
+    rectangle "Business Logic" as blogic #LightYellow
 
     database "Administrative DB" as vdb #LightGray
 
-    card "openFHIR Server" as ofhir #Orange
+    rectangle "openFHIR Server" as ofhir #Orange
     database "Mapping DB" as mdb #LightGray
 
-    card "openEHR Server" as ehr #Orange
+    rectangle "openEHR Server" as ehr #Orange
     database "openEhr DB" as ehrdb #LightGray
+    }
+  }
+
 }
 
 pfnt --> pbck
 cfnt --> cbck
 
-fclt <--> fapi
+fcltc <--> fapi
 fcltp <--> fapi
 
 fapi --> blogic

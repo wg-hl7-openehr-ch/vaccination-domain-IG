@@ -6,6 +6,3 @@
 
 {% include list-simple-valuesets.xhtml %}
 
-### ConceptMaps
-
-{% include list-simple-conceptmaps.xhtml %}
