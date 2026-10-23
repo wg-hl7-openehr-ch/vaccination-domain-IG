@@ -1,5 +1,6 @@
 archetype (adl_version=2.1.0; rm_release=1.0.3; generated; uid=e58b3d10-2ce2-4e26-8c8c-303177487f64)
 	openEHR-EHR-CLUSTER.ch_vacd_source_information.v1.0.0
+
 language
 	original_language = <[ISO_639-1::en]>
 

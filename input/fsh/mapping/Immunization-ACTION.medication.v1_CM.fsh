@@ -43,30 +43,62 @@ Usage: #definition
 * group[=].target = "http://openehr.org/fhir/StructureDefinition/ACTION"
 
 //Immunization	Immunization	0..*			ACTION.medication.v1	Entry / ACTION	CH VACD Immunization administration
-
+* group[=].element[0].code = #Immunization
+* group[=].element[0].target.code = #"/ism_transition/careflow_step"
+* group[=].element[0].target.equivalence = #equivalent
 //Immunization.id	id	0..1		id	ACTION.medication.v1	Feeder audit	feeder_audit/original_content
 * group[=].element[0].code = #Immunization.id
-* group[=].element[=].target.code = #ACTION
+* group[=].element[=].target.code = #"feeder_audit/original_content"
 * group[=].element[=].target.equivalence = #equivalent
-* group[=].element[=].target.comment = "Immunization.id  id  0..1  id  ACTION.medication.v1  Feeder audit  feeder_audit/original_content"
+//* group[=].element[=].target.comment = "Immunization.id  id  0..1  id  ACTION.medication.v1  Feeder audit  feeder_audit/original_content"
 
 //Immunization.meta	meta	0..1		Meta	ACTION.medication.v1	Feeder audit	feeder_audit/original_content
 * group[=].element[+].code = #Immunization.meta
-* group[=].element[=].target.code = #ACTION
+* group[=].element[=].target.code = #"feeder_audit/original_content"
 * group[=].element[=].target.equivalence = #equivalent
-* group[=].element[=].target.comment = "Immunization.meta  meta  0..1  Meta  ACTION.medication.v1  Feeder audit  feeder_audit/original_content"
+//* group[=].element[=].target.comment = "Immunization.meta  meta  0..1  Meta  ACTION.medication.v1  Feeder audit  feeder_audit/original_content"
 
 //Immunization.occurrenceDateTime	occurrenceDateTime	0..1		dateTime	ACTION.medication.v1	Reference Model	time
-* group[=].element[+].code = #Immunization.occurrenceDateTime
+* group[=].element[+].code = #Immunization.occurrence[x]
 * group[=].element[=].target.code = #ACTION.time
 * group[=].element[=].target.equivalence = #equivalent 
-* group[=].element[=].target.comment = "Immunization.occurrenceDateTime  occurrenceDateTime  0..1  dateTime  ACTION.medication.v1  Reference Model  time"
+//* group[=].element[=].target.comment = "Immunization.occurrenceDateTime  occurrenceDateTime  0..1  dateTime  ACTION.medication.v1  Reference Model  time"
+
+
+* group[=].element[+].code = #Immunization.performer
+* group[=].element[=].target.code = #ACTION."/other_participations"
+* group[=].element[=].target.equivalence = #equivalent
+
+* group[=].element[+].code = #Immunization.performer.actor
+* group[=].element[=].target.code = #"/other_participations/performer"
+* group[=].element[=].target.equivalence = #equivalent
 
 //Immunization.vaccineCode	vaccineCode	1..1	S	CodableConcept	ACTION.medication.v1	Description	description/Medication item
 * group[=].element[+].code = #Immunization.vaccineCode
-* group[=].element[=].target.code = #ACTION.medication
+* group[=].element[=].target.code = #"/description[at0017]/items[at0020]"
 * group[=].element[=].target.equivalence = #equivalent
-* group[=].element[=].target.comment = "Immunization.vaccineCode  vaccineCode  1..1  S  CodableConcept  ACTION.medication.v1  Description  description/Medication item"
+//* group[=].element[=].target.comment = "Immunization.vaccineCode  vaccineCode  1..1  S  CodableConcept  ACTION.medication.v1  Description  description/Medication item"
+
+* group[=].element[+].code = #Immunization.reasonCode
+* group[=].element[=].target.code = #"/description[at0017]/items[at0156]"
+* group[=].element[=].target.equivalence = #equivalent
+//* group[=].element[=].target.comment = "Immunization.reasonCode  reasonCode  0..*  S  CodableConcept  ACTION.medication.v1  Description  description/Medication item"
+
+* group[=].element[+].code = #Immunization.route
+* group[=].element[=].target.code = #"/description[at0017]/items[at0140]/items[at0147]"
+* group[=].element[=].target.equivalence = #equivalent
+//* group[=].element[=].target.comment = "Immunization.route  route  0..1  S  CodableConcept  ACTION.medication.v1  Description  description/Medication item"
+
+* group[=].element[+].code = #Immunization.site
+* group[=].element[=].target.code = #"/description[at0017]/items[at0140]/items[at0141]"
+* group[=].element[=].target.equivalence = #equivalent
+//* group[=].element[=].target.comment = "Immunization.site  site  0..1  S  CodableConcept  ACTION.medication.v1  Description  description/Medication item"
+
+//* occurrenceDateTime -> "time"
+//* vaccineCode -> "/description[at0017]/items[at0020]"
+//* reasonCode ->  "/description[at0017]/items[at0156]"
+//* route -> "/description[at0017]/items[at0140]/items[at0147]"
+//* site -> "/description[at0017]/items[at0140]/items[at0141]"
 
 //Immunization.contained	contained	0..1		Resource	ACTION.medication.v1	Feeder audit	feeder_audit/original_content
 //Immunization.education	education	0..*		Backbone Element	ACTION.medication.v1	Feeder audit	feeder_audit / original_content
@@ -112,7 +144,16 @@ Usage: #definition
 //Immunization.text	text	0..1		Narrative	ACTION.medication.v1	Feeder audit	feeder_audit/original_content
 
 
+* group[+].source = "http://fhir.ch/ig/ch-vacd/StructureDefinition/ch-vacd-immunization"
+* group[=].target = "http://fhir.ch/ig/ch-vaccination-domain-service/StructureDefinition/openEHR-EHR-CLUSTER.ch-vacd-immunization-protocol.v1.0.0"
+* group[=].element[+].code = #Immunization.protocolApplied
+* group[=].element[=].target.code = #openEHR-EHR-CLUSTER.ch-vacd-immunization-protocol.v1.0.0
+* group[=].element[=].target.equivalence = #equivalent
+//* group[=].element[=].target.comment = "Immunization.protocolApplied	0..*		Backbone Element	Protocol followed by the provider for this immunization	 	(CLUSTER.ch_vacd_immunization_protocol.v0)" 
 
+* group[=].element[+].code = #Immunization.protocolApplied.targetDisease
+* group[=].element[=].target.code = #openEHR-EHR-CLUSTER.ch-vacd-immunization-protocol.v1.0.0/items[id4]
+* group[=].element[=].target.equivalence = #equivalent
 
 //CLUSTER.adverse_reaction_event.v1
 * group[+].source = "http://fhir.ch/ig/ch-vacd/StructureDefinition/ch-vacd-immunization"
