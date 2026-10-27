@@ -34,7 +34,7 @@ dependencies:
   openehr.base:
     id: openehr
     uri: http://openehr.org/fhir/ImplementationGuide/openehr.base
-    version: 0.1.0-snapshot
+    version: current
     reason: Used to display the OpenEHR archetypes in a FHIR IG.
   
 #
